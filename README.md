@@ -44,3 +44,7 @@ same).
 > - Note that this will only works with some requirements:
 >   - git
 >   - wezterm
+>
+> - I Strongly recommend to place the cloned the repo at
+>   `$HOME/.config/` on **Windows** or `~/.config/` at **UNIX**,
+>   since wezterm can't access modules in _"C's unsafe mode"_.
