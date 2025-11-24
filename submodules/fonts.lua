@@ -26,19 +26,14 @@ local favorite_font_fallback = {
   "monospace",
 }
 
---- Push a new font into the table. Note that the `font` param
+--- Push a new font into the `font_table`. Note that the `font` param
 --- expects a type present within the `favorite_font_fallback`
 --- (`table` or `string`).
 ---
 --- This function automatically set the `harfbuzz_features` as
 --- disabled.
----@param tbl table Table to insert font into.
 ---@param font table|string Font to be insert.
-local function push_font_into_table(tbl, font)
-  panic_on(
-    type(tbl) ~= "table",
-    "push_font_into_table: `tbl` param must be a table"
-  )
+local function push_into_font_table(font)
   if type(font) == "string" then
     font = {
       family = font,
@@ -52,12 +47,12 @@ local function push_font_into_table(tbl, font)
       "push_font_into_table: `font` param must be either `string` or `table`"
     )
   end
-  tbl[#tbl + 1] = font
+  font_table[#font_table + 1] = font
 end
 
 -- Pushing fonts into `font_table`.
 for _, fav_font in ipairs(favorite_font_fallback) do
-  push_font_into_table(font_table, fav_font)
+  push_into_font_table(fav_font)
 end
 
 -- set font fields --------------------------------------------------
