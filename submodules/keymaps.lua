@@ -64,25 +64,39 @@ local function append_simple_key(key, act)
   key_maps.push(t)
 end
 
--- splitting --------------------------------------------------------
--- horizontal
+-- panes ------------------------------------------------------------
+-- split horizontal
 append_leader_combo("|", "SHIFT", action.SplitHorizontal({ domain = pane_domain }))
--- vertical
+-- split vertical
 append_leader_combo("\\", nil, action.SplitVertical({ domain = pane_domain }))
 -- closing
 append_leader_combo("c", nil, action.CloseCurrentPane({ confirm = true }))
+-- goto pane vim-like
+append_leader_combo("h", nil, action.ActivatePaneDirection("Left"))
+append_leader_combo("j", nil, action.ActivatePaneDirection("Down"))
+append_leader_combo("k", nil, action.ActivatePaneDirection("Up"))
+append_leader_combo("l", nil, action.ActivatePaneDirection("Right"))
+-- goto pane not vim-like (using keyboard arrows)
+append_leader_combo("LeftArrow", nil, action.ActivatePaneDirection("Left"))
+append_leader_combo("DownArrow", nil, action.ActivatePaneDirection("Down"))
+append_leader_combo("UpArrow", nil, action.ActivatePaneDirection("Up"))
+append_leader_combo("RightArrow", nil, action.ActivatePaneDirection("Right"))
 
 -- tabs -------------------------------------------------------------
 -- create new
 append_leader_combo("t", nil, action.SpawnTab(pane_domain))
+-- goto tab by index
 for i = 0, 7 do
   -- add `move-to` by the given index
   append_leader_combo(tostring(i + 1), nil, action.ActivateTab(i))
 end
 -- index 9 go to last
 append_leader_combo("9", nil, action.ActivateTab(-1))
--- close tab
+-- quit tab
 append_leader_combo("q", nil, action.CloseCurrentTab({ confirm = true }))
+-- go to relative tab
+append_leader_combo("{", "SHIFT", action.ActivateTabRelative(-1))
+append_leader_combo("}", "SHIFT", action.ActivateTabRelative(-1))
 
 -- copy mode --------------------------------------------------------
 append_leader_combo("[", nil, action.ActivateCopyMode)
