@@ -69,6 +69,8 @@ end
 append_leader_combo("|", "SHIFT", action.SplitHorizontal({ domain = pane_domain }))
 -- vertical
 append_leader_combo("\\", nil, action.SplitVertical({ domain = pane_domain }))
+-- closing
+append_leader_combo("c", nil, action.CloseCurrentPane({ confirm = true }))
 
 -- tabs -------------------------------------------------------------
 -- create new
