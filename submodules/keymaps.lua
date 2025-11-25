@@ -95,11 +95,12 @@ append_leader_combo("9", nil, action.ActivateTab(-1))
 -- quit tab
 append_leader_combo("q", nil, action.CloseCurrentTab({ confirm = true }))
 -- go to relative tab
-append_leader_combo("{", "SHIFT", action.ActivateTabRelative(-1))
-append_leader_combo("}", "SHIFT", action.ActivateTabRelative(-1))
+append_leader_combo("[", nil, action.ActivateTabRelative(-1))
+append_leader_combo("]", nil, action.ActivateTabRelative(-1))
 
 -- copy mode --------------------------------------------------------
-append_leader_combo("[", nil, action.ActivateCopyMode)
+-- use v (like vim visual mode)
+append_leader_combo("v", nil, action.ActivateCopyMode)
 
 -- full screen ------------------------------------------------------
 append_simple_key("F11", action.ToggleFullScreen)
