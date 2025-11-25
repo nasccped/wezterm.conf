@@ -95,8 +95,8 @@ append_leader_combo("9", nil, action.ActivateTab(-1))
 -- quit tab
 append_leader_combo("q", nil, action.CloseCurrentTab({ confirm = true }))
 -- go to relative tab
-append_leader_combo("[", nil, action.ActivateTabRelative(-1))
-append_leader_combo("]", nil, action.ActivateTabRelative(-1))
+append_leader_combo("p", nil, action.ActivateTabRelative(-1))
+append_leader_combo("n", nil, action.ActivateTabRelative(1))
 
 -- copy mode --------------------------------------------------------
 -- use v (like vim visual mode)
