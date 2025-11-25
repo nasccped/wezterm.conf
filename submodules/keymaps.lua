@@ -64,6 +64,27 @@ local function append_simple_key(key, act)
   key_maps.push(t)
 end
 
+--- Works like the wezterm's default table.
+---@param key string
+---@param mods string
+---@param act any
+local function append_specific_combo(key, mods, act)
+  panic_on(
+    type(key) ~= "string",
+    "append_specific_combo: `key` param must be a string"
+  )
+  panic_on(
+    type(mods) ~= "string",
+    "append_specific_combo: `mods` param must be a string"
+  )
+  local t = {
+    key = key,
+    mods = mods,
+    action = act
+  }
+  key_maps.push(t)
+end
+
 -- panes ------------------------------------------------------------
 -- split horizontal
 append_leader_combo("|", "SHIFT", action.SplitHorizontal({ domain = pane_domain }))
@@ -92,8 +113,8 @@ for i = 0, 7 do
 end
 -- index 9 go to last
 append_leader_combo("9", nil, action.ActivateTab(-1))
--- quit tab
-append_leader_combo("q", nil, action.CloseCurrentTab({ confirm = true }))
+-- quit tab (use shift+ctrl => avoid accidental quitting)
+append_specific_combo("q", "SHIFT|CTRL", action.CloseCurrentTab({ confirm = true }))
 -- go to relative tab
 append_leader_combo("p", nil, action.ActivateTabRelative(-1))
 append_leader_combo("n", nil, action.ActivateTabRelative(1))
