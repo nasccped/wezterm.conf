@@ -1,0 +1,224 @@
+local M = {}
+
+--- When foreground can't be found.
+local default_foreground = "#aaaaaa"
+--- When background can't be found.
+local default_background = "#222222"
+--- When specific color can't be found.
+local default_color = "#ff8888"
+
+--- Unwrap the target `field` from a `t` table. If not found, returns
+--- the `default_color` value.
+---
+--- Field can be either a number (list index) or string (map).
+---@param t? table
+---@param field string | number
+local function unwrap_field(t, field)
+  return t and t[field] or default_color
+end
+
+--- Returns the foreground color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_foreground`
+--- value (`#aaaaaa`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_foreground(resolved_palette)
+  local result = resolved_palette and resolved_palette.foreground
+  return result or default_foreground
+end
+
+--- Returns the background color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_background`
+--- value (`#222222`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_background(resolved_palette)
+  local result = resolved_palette and resolved_palette.background
+  return result or default_background
+end
+
+--- Returns the ansi black color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_black(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 1)
+      or default_color
+end
+
+--- Returns the ansi red color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_red(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 2)
+      or default_color
+end
+
+--- Returns the ansi green color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_green(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 3)
+      or default_color
+end
+
+--- Returns the ansi yellow color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_yellow(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 4)
+      or default_color
+end
+
+--- Returns the ansi blue color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_blue(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 5)
+      or default_color
+end
+
+--- Returns the ansi magenta color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_magenta(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 6)
+      or default_color
+end
+
+--- Returns the ansi cyan color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_cyan(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 7)
+      or default_color
+end
+
+--- Returns the ansi white color from a resolved_palette table. If
+--- table or required fields is `nil`, returns `default_color`
+--- value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_white(resolved_palette)
+  return resolved_palette and unwrap_field(resolved_palette.ansi, 8)
+      or default_color
+end
+
+--- Returns the bright black color from a resolved_palette table. If
+--- color result is `nil`, the ansi black will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_black(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 1)
+end
+
+--- Returns the bright red color from a resolved_palette table. If
+--- color result is `nil`, the ansi red will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_red(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 2)
+end
+
+--- Returns the bright green color from a resolved_palette table. If
+--- color result is `nil`, the ansi green will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_green(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 3)
+end
+
+--- Returns the bright yellow color from a resolved_palette table. If
+--- color result is `nil`, the ansi yellow will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_yellow(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 4)
+end
+
+--- Returns the bright blue color from a resolved_palette table. If
+--- color result is `nil`, the ansi blue will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_blue(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 5)
+end
+
+--- Returns the bright magenta color from a resolved_palette table. If
+--- color result is `nil`, the ansi magenta will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_magenta(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 6)
+end
+
+--- Returns the bright cyan color from a resolved_palette table. If
+--- color result is `nil`, the ansi cyan will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_cyan(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 7)
+end
+
+--- Returns the bright white color from a resolved_palette table. If
+--- color result is `nil`, the ansi white will be returned. If it's
+--- also `nil`, returns `default_color` value (`#ff8888`).
+---@param resolved_palette any
+---@return string
+function M.palette_get_b_white(resolved_palette)
+  local t = nil
+  if resolved_palette then
+    t = resolved_palette.bright or resolved_palette.ansi
+  end
+  return unwrap_field(t, 8)
+end
+
+return M
