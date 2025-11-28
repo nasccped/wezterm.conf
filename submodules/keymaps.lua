@@ -123,6 +123,10 @@ append_leader_combo("n", nil, action.ActivateTabRelative(1))
 -- use v (like vim visual mode)
 append_leader_combo("v", nil, action.ActivateCopyMode)
 
+-- search mode ------------------------------------------------------
+append_leader_combo("/", nil, action.Search({ CaseInSensitiveString = "" }))
+append_leader_combo("?", nil, action.Search({ CaseSensitiveString = "" }))
+
 -- full screen ------------------------------------------------------
 append_simple_key("F11", action.ToggleFullScreen)
 
@@ -136,4 +140,5 @@ for _, m in ipairs(key_maps) do
     M.keys[#M.keys + 1] = m
   end
 end
+
 return M
