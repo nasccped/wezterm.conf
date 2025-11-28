@@ -15,13 +15,12 @@ local font_size = 13.0
 local font_table = {}
 
 --- My favorite fonts. Note that the precedence will follows from to
---- top one to the bottom one. The `weight` field is already set to
---- (my favorites, btw).
+--- top one to the bottom one.
 local favorite_font_fallback = {
-  { family = "Iosevka Term",   weight = "DemiBold" },
-  { family = "Iosevka",        weight = "Bold" },
-  { family = "JetBrains Mono", weight = "Bold" },
-  { family = "Terminus",       weight = "Bold" },
+  { family = "Iosevka Term",   weight = "Regular" },
+  { family = "Iosevka",        weight = "Regular" },
+  { family = "JetBrains Mono", weight = "Regular" },
+  { family = "Terminus",       weight = "Regular" },
   "Noto Color Emoji",
   "monospace",
 }
