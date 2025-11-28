@@ -34,5 +34,6 @@ M.palette_get_b_blue = palette.palette_get_b_blue
 M.palette_get_b_magenta = palette.palette_get_b_magenta
 M.palette_get_b_cyan = palette.palette_get_b_cyan
 M.palette_get_b_white = palette.palette_get_b_white
+M.my_prefered_palette = palette.my_prefered_palette
 
 return M

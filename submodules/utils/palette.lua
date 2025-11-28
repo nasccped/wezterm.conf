@@ -7,6 +7,24 @@ local default_palette = wz.color.get_default_colors()
 local my_prefered = wz.color.get_builtin_schemes()["Adventure"]
     or default_palette
 
+my_prefered.brights = my_prefered.brights or my_prefered.ansi
+
+-- fully brightss
+for i = #my_prefered.brights, 8 do
+  if i > #my_prefered.brights then
+    my_prefered.brights[i] = my_prefered.ansi[i]
+  end
+end
+
+-- change magenta + white colors
+my_prefered.foreground = "#E3E3E3"
+my_prefered.ansi[2] = "#CE6C37"
+my_prefered.brights[2] = "#F8692C"
+my_prefered.ansi[6] = "#B888B3"
+my_prefered.brights[6] = "#D2B1F1"
+my_prefered.ansi[8] = "#eeeeee"
+my_prefered.brights[8] = "#ffffff"
+
 --- When foreground can't be found.
 local default_foreground = default_palette.foreground
 --- When background can't be found.
@@ -129,7 +147,7 @@ function M.palette_get_white(resolved_palette)
       or default_palette.ansi[8]
 end
 
---- Returns the bright black color from a resolved_palette table. If
+--- Returns the brights black color from a resolved_palette table. If
 --- color result is `nil`, the ansi black will be returned. If it's
 --- also `nil`, returns `"black"` string.
 ---@param resolved_palette any
@@ -137,12 +155,12 @@ end
 function M.palette_get_b_black(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 1) or default_palette.bright[1]
+  return unwrap_field(t, 1) or default_palette.brights[1]
 end
 
---- Returns the bright red color from a resolved_palette table. If
+--- Returns the brights red color from a resolved_palette table. If
 --- color result is `nil`, the ansi red will be returned. If it's
 --- also `nil`, returns `"red"` string.
 ---@param resolved_palette any
@@ -150,12 +168,12 @@ end
 function M.palette_get_b_red(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 2) or default_palette.bright[2]
+  return unwrap_field(t, 2) or default_palette.brights[2]
 end
 
---- Returns the bright green color from a resolved_palette table. If
+--- Returns the brights green color from a resolved_palette table. If
 --- color result is `nil`, the ansi green will be returned. If it's
 --- also `nil`, returns `"green"` string.
 ---@param resolved_palette any
@@ -163,12 +181,12 @@ end
 function M.palette_get_b_green(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 3) or default_palette.bright[3]
+  return unwrap_field(t, 3) or default_palette.brights[3]
 end
 
---- Returns the bright yellow color from a resolved_palette table. If
+--- Returns the brights yellow color from a resolved_palette table. If
 --- color result is `nil`, the ansi yellow will be returned. If it's
 --- also `nil`, returns `"yellow"` string.
 ---@param resolved_palette any
@@ -176,12 +194,12 @@ end
 function M.palette_get_b_yellow(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 4) or default_palette.bright[4]
+  return unwrap_field(t, 4) or default_palette.brights[4]
 end
 
---- Returns the bright blue color from a resolved_palette table. If
+--- Returns the brights blue color from a resolved_palette table. If
 --- color result is `nil`, the ansi blue will be returned. If it's
 --- also `nil`, returns `"blue"` string.
 ---@param resolved_palette any
@@ -189,12 +207,12 @@ end
 function M.palette_get_b_blue(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 5) or default_palette.bright[5]
+  return unwrap_field(t, 5) or default_palette.brights[5]
 end
 
---- Returns the bright magenta color from a resolved_palette table. If
+--- Returns the brights magenta color from a resolved_palette table. If
 --- color result is `nil`, the ansi magenta will be returned. If it's
 --- also `nil`, returns `"magenta"` string.
 ---@param resolved_palette any
@@ -202,12 +220,12 @@ end
 function M.palette_get_b_magenta(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 6) or default_palette.bright[6]
+  return unwrap_field(t, 6) or default_palette.brights[6]
 end
 
---- Returns the bright cyan color from a resolved_palette table. If
+--- Returns the brights cyan color from a resolved_palette table. If
 --- color result is `nil`, the ansi cyan will be returned. If it's
 --- also `nil`, returns `"cyan"` string.
 ---@param resolved_palette any
@@ -215,12 +233,12 @@ end
 function M.palette_get_b_cyan(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 7) or default_palette.bright[7]
+  return unwrap_field(t, 7) or default_palette.brights[7]
 end
 
---- Returns the bright white color from a resolved_palette table. If
+--- Returns the brights white color from a resolved_palette table. If
 --- color result is `nil`, the ansi white will be returned. If it's
 --- also `nil`, returns `"white"` string.
 ---@param resolved_palette any
@@ -228,9 +246,11 @@ end
 function M.palette_get_b_white(resolved_palette)
   local t = nil
   if resolved_palette then
-    t = resolved_palette.bright or resolved_palette.ansi
+    t = resolved_palette.brights or resolved_palette.ansi
   end
-  return unwrap_field(t, 8) or default_palette.bright[8]
+  return unwrap_field(t, 8) or default_palette.brights[8]
 end
+
+M.my_prefered_palette = my_prefered
 
 return M
