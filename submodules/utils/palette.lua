@@ -25,6 +25,14 @@ my_prefered.brights[6] = "#D2B1F1"
 my_prefered.ansi[8] = "#eeeeee"
 my_prefered.brights[8] = "#ffffff"
 
+my_prefered.selection_bg = my_prefered.brights[2]
+my_prefered.selection_fg = my_prefered.brights[8]
+
+my_prefered.copy_mode_active_highlight_bg = { Color = my_prefered.ansi[5] }
+my_prefered.copy_mode_active_highlight_fg = { Color = my_prefered.brights[8] }
+my_prefered.copy_mode_inactive_highlight_bg = { Color = my_prefered.ansi[4] }
+my_prefered.copy_mode_inactive_highlight_fg = { Color = my_prefered.brights[1] }
+
 --- When foreground can't be found.
 local default_foreground = default_palette.foreground
 --- When background can't be found.
