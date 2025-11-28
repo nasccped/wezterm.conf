@@ -1,9 +1,16 @@
+local wz = require("wezterm")
 local M = {}
 
+--- Wezterm default color palette.
+local default_palette = wz.color.get_default_colors()
+--- My prefered colorscheme (with little changes).
+local my_prefered = wz.color.get_builtin_schemes()["Adventure"]
+    or default_palette
+
 --- When foreground can't be found.
-local default_foreground = "#aaaaaa"
+local default_foreground = default_palette.foreground
 --- When background can't be found.
-local default_background = "#222222"
+local default_background = default_palette.background
 
 --- Unwrap the target `field` from a `t` table. If not found, returns
 --- a `nil` value.
@@ -49,7 +56,7 @@ end
 function M.palette_get_black(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 1)
-      or "black"
+      or default_palette.ansi[1]
 end
 
 --- Returns the ansi red color from a resolved_palette table. If
@@ -59,7 +66,7 @@ end
 function M.palette_get_red(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 2)
-      or "red"
+      or default_palette.ansi[2]
 end
 
 --- Returns the ansi green color from a resolved_palette table. If
@@ -69,7 +76,7 @@ end
 function M.palette_get_green(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 3)
-      or "green"
+      or default_palette.ansi[3]
 end
 
 --- Returns the ansi yellow color from a resolved_palette table. If
@@ -79,7 +86,7 @@ end
 function M.palette_get_yellow(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 4)
-      or "yellow"
+      or default_palette.ansi[4]
 end
 
 --- Returns the ansi blue color from a resolved_palette table. If
@@ -89,7 +96,7 @@ end
 function M.palette_get_blue(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 5)
-      or "blue"
+      or default_palette.ansi[5]
 end
 
 --- Returns the ansi magenta color from a resolved_palette table. If
@@ -99,7 +106,7 @@ end
 function M.palette_get_magenta(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 6)
-      or "magenta"
+      or default_palette.ansi[6]
 end
 
 --- Returns the ansi cyan color from a resolved_palette table. If
@@ -109,7 +116,7 @@ end
 function M.palette_get_cyan(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 7)
-      or "cyan"
+      or default_palette.ansi[7]
 end
 
 --- Returns the ansi white color from a resolved_palette table. If
@@ -119,7 +126,7 @@ end
 function M.palette_get_white(resolved_palette)
   return resolved_palette
       and unwrap_field(resolved_palette.ansi, 8)
-      or "white"
+      or default_palette.ansi[8]
 end
 
 --- Returns the bright black color from a resolved_palette table. If
@@ -132,7 +139,7 @@ function M.palette_get_b_black(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 1) or "black"
+  return unwrap_field(t, 1) or default_palette.bright[1]
 end
 
 --- Returns the bright red color from a resolved_palette table. If
@@ -145,7 +152,7 @@ function M.palette_get_b_red(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 2) or "red"
+  return unwrap_field(t, 2) or default_palette.bright[2]
 end
 
 --- Returns the bright green color from a resolved_palette table. If
@@ -158,7 +165,7 @@ function M.palette_get_b_green(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 3) or "green"
+  return unwrap_field(t, 3) or default_palette.bright[3]
 end
 
 --- Returns the bright yellow color from a resolved_palette table. If
@@ -171,7 +178,7 @@ function M.palette_get_b_yellow(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 4) or "yellow"
+  return unwrap_field(t, 4) or default_palette.bright[4]
 end
 
 --- Returns the bright blue color from a resolved_palette table. If
@@ -184,7 +191,7 @@ function M.palette_get_b_blue(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 5) or "blue"
+  return unwrap_field(t, 5) or default_palette.bright[5]
 end
 
 --- Returns the bright magenta color from a resolved_palette table. If
@@ -197,7 +204,7 @@ function M.palette_get_b_magenta(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 6) or "magenta"
+  return unwrap_field(t, 6) or default_palette.bright[6]
 end
 
 --- Returns the bright cyan color from a resolved_palette table. If
@@ -210,7 +217,7 @@ function M.palette_get_b_cyan(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 7) or "cyan"
+  return unwrap_field(t, 7) or default_palette.bright[7]
 end
 
 --- Returns the bright white color from a resolved_palette table. If
@@ -223,7 +230,7 @@ function M.palette_get_b_white(resolved_palette)
   if resolved_palette then
     t = resolved_palette.bright or resolved_palette.ansi
   end
-  return unwrap_field(t, 8) or "white"
+  return unwrap_field(t, 8) or default_palette.bright[8]
 end
 
 return M
